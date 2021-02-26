@@ -86,11 +86,18 @@ def animal_facts():
     """Show a form to choose an animal and receive facts."""
 
     # TODO: Collect the form data and save as variables
+    selected_animal = request.args.get("animal")
+    if selected_animal == "none":
+        facts = "none"
+    elif selected_animal != "none":
+        facts = animal_to_fact.get(selected_animal)
 
     context = {
         # TODO: Enter your context variables here for:
         # - the list of all animals (get from animal_to_fact)
+        "animals" : animal_to_fact.keys(),
         # - the chosen animal fact (may be None if the user hasn't filled out the form yet)
+        "facts" : facts
     }
     return render_template('animal_facts.html', **context)
 
