@@ -199,6 +199,8 @@ def gif_search():
     if request.method == 'POST':
         # TODO: Get the search query & number of GIFs requested by the user, store each as a 
         # variable
+        search_q = request.form.get("search_query")
+        gif_num = request.form.get("quantity")
 
         response = requests.get(
             TENOR_URL,
@@ -207,6 +209,10 @@ def gif_search():
                 # - 'q': the search query
                 # - 'key': the API key (defined above)
                 # - 'limit': the number of GIFs requested
+                'q' : search_q,
+                'key' : API_KEY,
+                'limit' : gif_num
+                
             })
 
         gifs = json.loads(response.content).get('results')
