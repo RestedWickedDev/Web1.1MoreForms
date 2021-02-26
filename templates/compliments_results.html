@@ -7,6 +7,19 @@ Compliments Results
 {% block content %}
 
 <!-- Your HTML code goes here! -->
+<p>Hello {{ username }}!</p>
+
+{% if wcompliments == "no" %}
+<p>You didn't want any compliments ;(</p>
+{% endif %}
+{% elif wcompliments == "yes" %}
+<p>;)</p>
+<ul>
+{% for comp in compliments %}
+<li>{{ comp }}</li>
+{% endfor %}
+</ul>
+{% endif %}
 
 
 
